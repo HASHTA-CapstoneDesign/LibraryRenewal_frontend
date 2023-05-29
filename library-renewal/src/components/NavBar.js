@@ -45,14 +45,7 @@ export const NavBar = () => {
             <Nav className="ms-auto">
               <Nav.Link href="/books"><a style={{color:'White'}}>books</a></Nav.Link>
               <Nav.Link href="/notice"><a style={{color:'White'}}>notice</a></Nav.Link>
-              <li class="nav-item dropdown">
               <Nav.Link href="/Maps"><a style={{color:'White'}}>maps</a></Nav.Link>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Lorem</a>
-                <a class="dropdown-item" href="#">Ipsum</a>
-                <a class="dropdown-item" href="#">Dolor</a>
-              </div>
-            </li>
               <Nav.Link href="/myloan"><a style={{color:'White'}}>Mypage</a></Nav.Link>
               <Nav.Link href="/studyroom/reserve"><a style={{color:'White'}}>RoomReserve</a></Nav.Link>
             </Nav>

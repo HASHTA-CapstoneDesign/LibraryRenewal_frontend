@@ -8,6 +8,8 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { SearchBar } from "./SearchBar";
 
+import {Nav} from 'react-bootstrap';
+
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -61,7 +63,7 @@ export const Banner = () => {
                   <h1>{`환영합니다!`} </h1>
                   <h1>{`무엇이든 검색하세요.`} </h1>
                   <SearchBar />
-                  <button onClick={() => console.log('Show Books')}>Show Books <ArrowRightCircle size={25} /></button>
+                  <Nav.Link href="/book"><button>Show Books <ArrowRightCircle size={25} /></button></Nav.Link>
                 </div>}
             </TrackVisibility>
           </Col>

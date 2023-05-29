@@ -16,17 +16,21 @@ import { blogList } from '../NoticeComponents/config/data';
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import BookItem from './BookItem';
 
 function Notice() {
 
   const [blogs, setBlogs] = useState(blogList);
   const [searchKey, setSearchKey] = useState('');
+  const [noticeSearch, setNoticeSearch] = useState([]);
 
   // Search submit
   const handleSearchBar = (e) => {
-    e.preventDefault();
-    handleSearchResults();
-  };
+    axios.get('http://34.64.215.230:8080/api/notice/search?keyword='+e)
+      .then(response => {
+        setNoticeSearch(response.data.dtoList);
+      });
+  }
 
   // Search for blog by category
   const handleSearchResults = () => {

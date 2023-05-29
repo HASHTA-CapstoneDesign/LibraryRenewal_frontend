@@ -18,8 +18,21 @@ import GlobalStyle from './GlobalStyle';
 import HallymMuseum from './screens/hallymMuseum';
 import JpStudy from './screens/jpStudy';
 import Csquare from './screens/csquare';
+import { Book } from 'react-bootstrap-icons';
+import BookItem from './screens/BookItem';
+import Hello from './screens/BookItem';
+import Booklist from './screens/Booklist';
+import ChatWindow from './components/ChatWindow';
+import { useState } from 'react';
 
 function App() {
+
+  const [showChat, setShowChat] = useState(false);
+
+  const handleChatToggle = () => {
+    setShowChat(!showChat);
+  };
+
   return (
     <div className="App">
       <NavBar />
@@ -122,8 +135,20 @@ function App() {
               <Footer />
             </>
           } />
+            <Route path="/book" element={
+            <>
+            <Booklist/>
+            <Footer/>
+            </>
+          } />
         </Routes>
       </Router>
+      <div className="chat-icon" style={{ position: 'fixed', bottom: 30, right: 30 }}>
+        {showChat && <ChatWindow />}
+        <img src="./chaticon.jpeg" alt="Chat Icon"
+             style={{ width: '50px', height: '50px', cursor: 'pointer', position: 'relative' }}
+             onClick={handleChatToggle} />
+      </div>
     </div>
   );
 }

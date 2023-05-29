@@ -1,0 +1,73 @@
+.chat-window {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    bottom: 60px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.message-container {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 답변을 왼쪽에 정렬 */
+    background: #e0dddd;
+}
+
+.message-bubble {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.user {
+    background-color: #f2f2f2;
+    align-self: flex-end;
+    color: black;
+}
+
+.bot {
+    background-color: #c4def6;
+    align-self: flex-start;
+    color: black;
+}
+
+.input-form {
+    display: flex;
+    border-top: 1px solid gainsboro;
+    background: #fff;
+    color: black;
+}
+
+.input-field {
+    flex-grow: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.send-button {
+    padding: 8px 15px;
+    border-radius: 0 3px 3px 0;
+    border: none;
+    background-color: #0c85f5;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    width: 90px;
+    font-size: 13px;
+}
+
+
