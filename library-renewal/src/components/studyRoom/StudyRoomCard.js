@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getStudyRoomList } from '../../api/studyRoom/studyRoomLIst';
+import { getStudyRoomList } from '../../api/studyRoom/studyRoomList';
 import { useState, useEffect } from 'react';
+import { STUDYROOM_FLOOR1_ENDPOINT } from '../../api/studyRoom/studyRoomList';
+import ReserveTime from './ReserveTime';
 
 const RoomContainer = styled.div`
   background-color: #ffffff;
@@ -109,10 +111,24 @@ const RoomContent = styled.div`
       line-height: 2.5rem;
     }
   }
+
+  .reserve-time-div {
+    background-color: red;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
-const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
-  const { data: roomList, isLoading } = useQuery(
+const StudyRoomCard = ({ roomList, currentLastUrl, todayDate }) => {
+  let lastUrl = 'floor1';
+
+  if (currentLastUrl !== undefined) {
+    lastUrl = currentLastUrl;
+  }
+
+  /*const { data: roomList, isLoading } = useQuery(
     ['studyRooms', currentLastUrl, todayDate],
     async () =>
       await getStudyRoomList({ floor: currentLastUrl, data: todayDate }),
@@ -124,12 +140,22 @@ const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
   if (isLoading) {
     <div>loading...</div>;
   }
-  console.log('roomList ', roomList);
+  console.log('roomList ', roomList); */
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const [useTime, setUseTime] = useState('');
+
+  const handleClickUseTime = (e) => {
+    console.log(e.target.value);
+  };
 
   return (
-    <RoomContainer>
+    <RoomContainer onSubmit={handleSubmit}>
       <RoomNo>
-        <span>17212호실</span>
+        <span>{roomList.name}</span>
       </RoomNo>
       <RoomContent>
         <div className="room-info">
@@ -142,37 +168,13 @@ const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
             <span>- 토~일요일 (공휴일 포함) : 13:00 ~ 18:50</span>
           </div>
         </div>
-        <div className="room-reservation">
-          <button className="time first">
-            <span>13:00~14:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time second">
-            <span>14:00~15:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time third">
-            <span>15:00~16:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time fourth">
-            <span>16:00~17:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time fifth">
-            <span>17:00~18:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time sixth">
-            <span>18:00~19:00</span>
-            <span>예약가능</span>
-          </button>
-        </div>
-        <div className="reserve-box">
-          <div className="reserve-btn">
-            <button>신청</button>
+        {roomList && (
+          <div className="reserve-time-div">
+            {roomList.useTimes.map((item) => (
+              <ReserveTime key={item.id} item={item} />
+            ))}
           </div>
-        </div>
+        )}
       </RoomContent>
     </RoomContainer>
   );

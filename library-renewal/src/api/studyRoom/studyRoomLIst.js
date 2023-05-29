@@ -1,8 +1,13 @@
 import defaultRequest from '../defaultRequest';
 import authRequest from '../authRequest';
 
+export const STUDYROOM_FLOOR1_ENDPOINT =
+  process.env.REACT_APP_API +
+  process.env.REACT_APP_API_STUDYROOM_FLOOR1_ENDPOINT;
+
 // /api/room?floor={}&data={}
 export const getStudyRoomList = async ({ floor, data }) => {
+  console.log('api ', floor);
   try {
     const res = await defaultRequest.get('/api/room', {
       params: { floor, data },
