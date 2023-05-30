@@ -16,6 +16,7 @@ const ContainerBox = styled.div`
   //padding-top: 3rem;
   padding-bottom: 3rem;
   color: var(--main-font-color);
+  margin-bottom: 12rem;
 `;
 
 const TapContainer = styled.div`
