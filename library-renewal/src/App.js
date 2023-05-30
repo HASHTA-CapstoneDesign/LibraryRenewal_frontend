@@ -23,10 +23,23 @@ function App() {
       {/* <GlobalStyle /> */}
       <Router>
         <Routes>
-          <Route path="/myloan/*" element={<MyLoanPage />}></Route>
+          <Route
+            path="/myloan/*"
+            element={
+              <>
+                <MyLoanPage />
+                <Footer />
+              </>
+            }
+          ></Route>
           <Route
             path="/studyroom/reserve/*"
-            element={<StudyRoomReservePage />}
+            element={
+              <>
+                <StudyRoomReservePage />
+                <Footer />
+              </>
+            }
           ></Route>
           <Route
             path="/"

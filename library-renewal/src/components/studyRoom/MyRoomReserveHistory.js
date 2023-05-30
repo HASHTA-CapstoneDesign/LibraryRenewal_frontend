@@ -49,6 +49,19 @@ const Container = styled.div`
   }
 `;
 
+const ExtensionBtn = styled.button`
+  display: block;
+  margin: auto;
+  width: 5rem;
+  height: 2rem;
+  background-color: #4859a6;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+`;
+
 const MyRoomReserveHistory = () => {
   const [data, isLoading, error] = useFetch(
     `http://34.64.215.230:8080/api/reserve/room/1`
@@ -57,7 +70,6 @@ const MyRoomReserveHistory = () => {
   let myList;
   if (data) {
     myList = data.response;
-    console.log('data ', data);
   }
 
   return (
@@ -116,11 +128,12 @@ const MyRoomReserveHistory = () => {
           </tbody>
         </table>
       </div>
-      <div className="cancel-box">
+      {/*<div className="cancel-box">
         <div className="cancel-btn">
           <button>신청 취소</button>
         </div>
-      </div>
+          </div>*/}
+      <ExtensionBtn>예약 취소</ExtensionBtn>
     </Container>
   );
 };
