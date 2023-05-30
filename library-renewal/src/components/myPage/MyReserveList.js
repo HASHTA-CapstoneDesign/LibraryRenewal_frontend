@@ -13,7 +13,7 @@ const Container = styled.div`
 
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid #ffffff;
   }
 
   .col-title {
@@ -54,9 +54,11 @@ const MyReserveList = () => {
                 <input type="checkbox" id="room-checkbox" />
               </td>
               <td className="col-title">1</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">2023-05-17</td>
+              <td className="col-title">
+                3D studio Max 4.x:character studio 3.1
+              </td>
+              <td className="col-title">정준한</td>
+              <td className="col-title">2023-05-27</td>
             </tr>
           </tbody>
         </table>

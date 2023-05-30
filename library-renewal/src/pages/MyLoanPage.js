@@ -6,11 +6,14 @@ import MyLoanHistory from '../components/myPage/MyLoanHistory';
 import MyReserveList from '../components/myPage/MyReserveList';
 
 const ContainerBox = styled(Container)`
+  margin: auto;
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
   padding-bottom: 3rem;
   color: var(--main-font-color);
+  margin-top: 8rem;
+  margin-bottom: 18rem;
 
   .tap-container {
     display: flex;
@@ -34,6 +37,7 @@ const TabLink = styled(Link)`
   height: 1.5rem;
   color: black;
   cursor: pointer;
+  text-decoration: none;
 
   :hover {
     background-color: #00a4c3;

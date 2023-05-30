@@ -1,8 +1,13 @@
 import defaultRequest from '../defaultRequest';
 import authRequest from '../authRequest';
 
+export const STUDYROOM_FLOOR1_ENDPOINT =
+  process.env.REACT_APP_API +
+  process.env.REACT_APP_API_STUDYROOM_FLOOR1_ENDPOINT;
+
 // /api/room?floor={}&data={}
 export const getStudyRoomList = async ({ floor, data }) => {
+  console.log('api ', floor);
   try {
     const res = await defaultRequest.get('/api/room', {
       params: { floor, data },
@@ -16,7 +21,8 @@ export const getStudyRoomList = async ({ floor, data }) => {
 
 // api url
 export const STUDYROOM_ENDPOINT =
-  process.env.REACT_APP_API_STUDYROOM_RESERVE_ENDPOINT;
+  process.env.REACT_APP_SERVER_API +
+  process.env.REACT_APP_API_STUDYROOM_RESERVE;
 
 const API_CONNECT_TIMEOUT = 2000;
 
@@ -35,7 +41,7 @@ export const studyRoomGetById = async (boardId) => {
 };
 
 // 시설 예약
-export const boardCreate = async (body) => {
+export const studyRoomCreate = async (body) => {
   try {
     const res = await authRequest.post(STUDYROOM_ENDPOINT, body, {
       timeout: API_CONNECT_TIMEOUT,
@@ -64,8 +70,8 @@ export const boardPatch = async (boardId, body) => {
 };
 
 // 시설 예약 취소
-export const boardDelete = async (boardId) => {
-  const path = `${STUDYROOM_ENDPOINT}/${boardId}`;
+export const studyRoomDelete = async (roomId) => {
+  const path = `${STUDYROOM_ENDPOINT}/cancel/${roomId}`;
 
   try {
     let result = await authRequest.delete(path, {

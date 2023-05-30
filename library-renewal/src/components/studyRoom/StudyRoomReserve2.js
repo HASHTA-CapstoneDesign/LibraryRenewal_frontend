@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import StudyRoomCard from './StudyRoomCard';
 import { useState, useEffect } from 'react';
 import { convertDate } from '../../utils/dateConvert';
-import useFetch from '../../hooks/useFetch';
 
 const Container = styled.div`
   width: 60%;
@@ -146,29 +145,8 @@ const RoomContent = styled.div`
   }
 `;
 
-const StudyRoomReserve = ({ currentLastUrl, todayDate }) => {
+const StudyRoomReserve2 = () => {
   const { pathname } = useLocation();
-
-  console.log('currentLastUrl ', currentLastUrl);
-  /*const [currentLastUrl, setCurrentLastUrl] = useState(null);
-
-  const todayDate = convertDate(new Date());
-
-  useEffect(() => {
-    const url = pathname;
-    const splitUrl = url.split('/');
-    const location = splitUrl[splitUrl.length - 1];
-    setCurrentLastUrl(location);
-  });*/
-
-  const [data, isLoading, error] = useFetch(
-    `http://34.64.215.230:8080/api/room?floor=${currentLastUrl}&data=2023-05-28`
-  );
-
-  let roomList;
-  if (data) {
-    roomList = data.response;
-  }
 
   return (
     <Container>
@@ -264,23 +242,9 @@ const StudyRoomReserve = ({ currentLastUrl, todayDate }) => {
           </>
         )}
       </Notification>
-      {error && <div>시설 리스트 조회 실패</div>}
-      {isLoading && <div>로딩중</div>}
-      {data && (
-        <>
-          {data.map((item) => (
-            <StudyRoomCard
-              key={item.id}
-              // item={item}
-              roomList={item}
-              currentLastUrl={currentLastUrl}
-              todayDate={todayDate}
-            />
-          ))}
-        </>
-      )}
+      <StudyRoomCard />
     </Container>
   );
 };
 
-export default StudyRoomReserve;
+export default StudyRoomReserve2;

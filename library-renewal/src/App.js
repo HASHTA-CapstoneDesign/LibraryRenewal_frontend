@@ -39,7 +39,6 @@ function App() {
       {/* <GlobalStyle /> */}
       <Router>
         <Routes>
-
           <Route
             path="/myloan/*"
             element={
@@ -47,8 +46,8 @@ function App() {
                 <MyLoanPage />
                 <Footer />
               </>
-
-            } />
+            }
+          ></Route>
           <Route
             path="/studyroom/reserve/*"
             element={
@@ -57,7 +56,7 @@ function App() {
                 <Footer />
               </>
             }
-          />
+          ></Route>
           <Route
             path="/"
             element={
