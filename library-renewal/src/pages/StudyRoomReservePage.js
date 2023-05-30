@@ -185,7 +185,12 @@ const StudyRoomReservePage = () => {
           }
         ></Route>
       </Routes>
+        <div className="space-for-nav" style={{ height: "4rem" }}></div>
+        <div className="space-for-nav" style={{ height: "4rem" }}></div>
+        <div className="space-for-nav" style={{ height: "4rem" }}></div>
+        <div className="space-for-nav" style={{ height: "4rem" }}></div>
     </ContainerBox>
+    
   );
 };
 

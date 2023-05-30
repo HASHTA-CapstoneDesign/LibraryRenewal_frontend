@@ -1,14 +1,11 @@
 import React from 'react'
-import NoticeBlog from '../screens/NoticeBlog'
 import BlogItem from './BlogItem';
 import './style.css';
 
 const BlogList = ({ blogs }) => {
     return (
       <div className='blogList-wrap'>
-        {blogs.map((blog) => (
-          <BlogItem blog={blog} key={blog.id} />
-        ))}
+        <BlogItem></BlogItem>
       </div>
     );
   };

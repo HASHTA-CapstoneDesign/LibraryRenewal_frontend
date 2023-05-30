@@ -8,6 +8,7 @@ import navIcon3 from '../assets/img/nav-icon3.svg';
 import { HashLink } from 'react-router-hash-link';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import NavbarOffcanvas from 'react-bootstrap/esm/NavbarOffcanvas';
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState('home');
@@ -31,8 +32,8 @@ export const NavBar = () => {
     setActiveLink(value);
   };
   return (
-    <Router>
-      <Navbar expand="md" className={scrolled ? 'scrolled' : ''}>
+<Router>
+      <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
         <Container>
           <Navbar.Brand href="/">
             <img src={librarylogo} alt="Logo" />
@@ -40,29 +41,15 @@ export const NavBar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <span className="navbar-toggler-icon"></span>
           </Navbar.Toggle>
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Offcanvas id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="#pricing">
-                <Link to="/Books"> Books </Link>
-              </Nav.Link>
-              <Nav.Link href="#deets">
-                <Link to="/Notice"> Notice </Link>
-              </Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                <Link to="/Mpas"> Maps </Link>
-              </Nav.Link>
+              <Nav.Link href="/books"><a style={{color:'White'}}>books</a></Nav.Link>
+              <Nav.Link href="/notice"><a style={{color:'White'}}>notice</a></Nav.Link>
+              <Nav.Link href="/Maps"><a style={{color:'White'}}>maps</a></Nav.Link>
+              <Nav.Link href="/myloan"><a style={{color:'White'}}>Mypage</a></Nav.Link>
+              <Nav.Link href="/studyroom/reserve"><a style={{color:'White'}}>RoomReserve</a></Nav.Link>
             </Nav>
-            <span className="navbar-text">
-              <div className="social-icon"></div>
-              <Nav.Link eventKey={2} href="#memess">
-                <Link to="/Mypage">
-                  <button className="vvd">
-                    <span>MyPage</span>
-                  </button>
-                </Link>
-              </Nav.Link>
-            </span>
-          </Navbar.Collapse>
+          </Navbar.Offcanvas>
         </Container>
       </Navbar>
     </Router>

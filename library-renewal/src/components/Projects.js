@@ -7,6 +7,11 @@ import colorSharp2 from "../assets/img/color-sharp2.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+
+
 export const Projects = () => {
 
   const projects = [
@@ -14,33 +19,17 @@ export const Projects = () => {
       title: "Business Startup",
       description: "Design & Development",
       imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg1,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg2,
-    },
-    {
-      title: "Business Startup",
-      description: "Design & Development",
-      imgUrl: projImg3,
-    },
+    }
   ];
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+      axios.get('http://34.64.215.230:8080/api/notice/important')
+          .then(response => {
+              setUsers(response.data);
+          });
+  }, []);
 
   return (
     <section className="project" id="project">
@@ -65,17 +54,20 @@ export const Projects = () => {
                   </Nav>
                   <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
                     <Tab.Pane eventKey="first">
-                      <Row>
-                        {
-                          projects.map((project, index) => {
-                            return (
-                              <ProjectCard
-                                key={index}
-                                {...project}
-                                />
-                            )
-                          })
+                      <Row>{
+                        users.map((data) => (
+                          <Col size={12} sm={6} md={4}>
+                          <div className="proj-imgbx">
+                          <img src={data.image}/>
+                          <div className="proj-txtx">
+                            <h4>{data.title}</h4>
+                            <span>{data.writer}</span>
+                          </div>
+                        </div>
+                      </Col>
+                          ))
                         }
+
                       </Row>
                     </Tab.Pane>
                     <Tab.Pane eventKey="section">

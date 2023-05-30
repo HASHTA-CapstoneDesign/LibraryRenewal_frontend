@@ -1,14 +1,12 @@
-import React from 'react'
 import Header from '../NoticeComponents/Header';
 import SearchBar from '../NoticeComponents/SearchBar';
 import BlogList from '../NoticeComponents/BlogList';
 import EmptyList from '../NoticeComponents/Common/EmptyList';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { data } from './mockData';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { NavBar } from '../components/NavBar';
-import { Navbar, Nav, NavDropdown, Container, Image, Card,Carousel } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, Image, Card, Carousel } from "react-bootstrap";
 import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Row from 'react-bootstrap/Row';
@@ -16,17 +14,23 @@ import Col from 'react-bootstrap/Col';
 import './Notice.css';
 import { blogList } from '../NoticeComponents/config/data';
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import BookItem from './BookItem';
 
 function Notice() {
 
   const [blogs, setBlogs] = useState(blogList);
   const [searchKey, setSearchKey] = useState('');
+  const [noticeSearch, setNoticeSearch] = useState([]);
 
   // Search submit
   const handleSearchBar = (e) => {
-    e.preventDefault();
-    handleSearchResults();
-  };
+    axios.get('http://34.64.215.230:8080/api/notice/search?keyword='+e)
+      .then(response => {
+        setNoticeSearch(response.data.dtoList);
+      });
+  }
 
   // Search for blog by category
   const handleSearchResults = () => {
@@ -42,7 +46,7 @@ function Notice() {
     setBlogs(blogList);
     setSearchKey('');
   };
-  
+
   const slideLeft = () => {
     var slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft - 500;
@@ -53,35 +57,44 @@ function Notice() {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://34.64.215.230:8080/api/notice/important')
+      .then(response => {
+        setUsers(response.data);
+      });
+  }, []);
+
   return (
     <div className='container'>
-    <div className="space-for-nav" style={{ height: "4rem" }}></div>
-    <div className="space-for-nav" style={{ height: "4rem" }}></div>
-  
-    <Header />
-    <SearchBar
+      <div className="space-for-nav" style={{ height: "4rem" }}></div>
+      <div className="space-for-nav" style={{ height: "4rem" }}></div>
+
+      <Header />
+      <SearchBar
         value={searchKey}
         clearSearch={handleClearSearch}
         formSubmit={handleSearchBar}
         handleSearchKey={(e) => setSearchKey(e.target.value)}
       />
 
-    <div className='relative flex items-center'>
-      <MdChevronLeft className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={40} />
-      <div
-        id='slider'
-        className='w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide'
-      >
-        {data.map((item) => (
-           <img
-             className='w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300'
-             src={item.img}
-             alt='/'
-          />
-        ))}
+      <div className='relative flex items-center'>
+        <MdChevronLeft className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} size={40} />
+        <div
+          id='slider'
+          className='w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide'
+        >
+          {users.map((item) => (
+            <img
+              className='w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300'
+              src={item.image}
+              alt='/'
+            />
+          ))}
+        </div>
+        <MdChevronRight className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideRight} size={40} />
       </div>
-       <MdChevronRight className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideRight} size={40} />
-    </div>
 
       <div className="space-for-nav" style={{ height: "4rem" }}></div>
 
@@ -92,9 +105,9 @@ function Notice() {
       <div className="space-for-nav" style={{ height: "4rem" }}></div>
       <div className="space-for-nav" style={{ height: "4rem" }}></div>
     </div>
-    
+
   );
 }
-     
+
 
 export default Notice
