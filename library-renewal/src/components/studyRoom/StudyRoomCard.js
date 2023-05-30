@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getStudyRoomList } from '../../api/studyRoom/studyRoomList';
+import { getStudyRoomList } from '../../api/studyRoom/studyRoomLIst';
 import { useState, useEffect } from 'react';
 import {
   STUDYROOM_FLOOR1_ENDPOINT,
   studyRoomCreate,
-} from '../../api/studyRoom/studyRoomList';
+} from '../../api/studyRoom/studyRoomLIst';
 import ReserveTime from './ReserveTime';
 
 const RoomContainer = styled.div`
