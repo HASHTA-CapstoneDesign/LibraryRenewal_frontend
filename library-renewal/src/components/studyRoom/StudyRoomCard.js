@@ -41,6 +41,7 @@ const RoomContent = styled.div`
 
     .room-pic {
       background-color: #cacac8;
+      background: url(https://storage.googleapis.com/library_renewal/%EA%B7%B8%EB%A6%BC1.jpg);
       width: 25%;
       height: 9rem;
     }
@@ -159,7 +160,8 @@ const StudyRoomCard = ({ roomList, currentLastUrl, todayDate }) => {
       <RoomContent>
         <div className="room-info">
           <div className="room-pic">
-            <span>시설 사진</span>
+          {/* <span><img src='https://storage.googleapis.com/library_renewal/%EA%B7%B8%EB%A6%BC1.jpg' height="150"/></span> */}
+            
           </div>
           <div className="room-noti">
             <span>- 사용 인원 : 3~6명 입실가능</span>
