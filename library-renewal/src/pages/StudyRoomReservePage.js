@@ -136,7 +136,7 @@ const StudyRoomReservePage = () => {
         </div>
       </TapContainer>
       <Routes>
-        <Route path="/" element={<StudyRoomReserve2 />}></Route>
+        <Route path="/" element={<StudyRoomReserve />}></Route>
         <Route path="list" element={<StudyRoomReserve />}></Route>
         <Route path="history" element={<MyRoomReserveHistory />}></Route>
         <Route
@@ -185,12 +185,7 @@ const StudyRoomReservePage = () => {
           }
         ></Route>
       </Routes>
-        <div className="space-for-nav" style={{ height: "4rem" }}></div>
-        <div className="space-for-nav" style={{ height: "4rem" }}></div>
-        <div className="space-for-nav" style={{ height: "4rem" }}></div>
-        <div className="space-for-nav" style={{ height: "4rem" }}></div>
     </ContainerBox>
-    
   );
 };
 

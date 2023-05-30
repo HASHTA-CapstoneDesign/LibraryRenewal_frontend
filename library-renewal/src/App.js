@@ -93,9 +93,8 @@ function App() {
             path="/Maps"
             element={
               <>
-              <Maps/>
-              <Footer />
-                
+                <Maps />
+                <Footer />
               </>
             }
           />
@@ -116,30 +115,6 @@ function App() {
               </>
             }
           />
-          <Route path="/hallymMuseum" element={
-            <>
-              <HallymMuseum />
-              <Footer />
-            </>
-          } />
-          <Route path="/jpStudy" element={
-            <>
-              <JpStudy />
-              <Footer />
-            </>
-          } />
-          <Route path="/csquare" element={
-            <>
-              <Csquare />
-              <Footer />
-            </>
-          } />
-            <Route path="/book" element={
-            <>
-            <Booklist/>
-            <Footer/>
-            </>
-          } />
         </Routes>
       </Router>
       <div className="chat-icon" style={{ position: 'fixed', bottom: 30, right: 30 }}>
