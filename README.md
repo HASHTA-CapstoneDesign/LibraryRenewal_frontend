@@ -6,3 +6,11 @@
 ![Javascript](https://img.shields.io/badge/javascript-white?style=for-the-badge&logo=javascript&logoColor=black&color=F7DF1E)
 ![React](https://img.shields.io/badge/react-white?style=for-the-badge&logo=react&logoColor=black&color=61DAFB)
 ![googlecloud](https://img.shields.io/badge/googlecloud-4285F4.svg?style=for-the-badge&logo=googlecloud&logoColor=white)
+
+## Dependencies
+- styled-components
+- axios
+- react-router-dom
+- tailwind CSS
+- animate.css
+- react-icons
