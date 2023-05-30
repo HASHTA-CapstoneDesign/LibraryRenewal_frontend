@@ -115,6 +115,12 @@ function App() {
               </>
             }
           />
+           <Route path="/book" element={
+            <>
+            <Booklist/>
+            <Footer/>
+            </>
+          } />
         </Routes>
       </Router>
       <div className="chat-icon" style={{ position: 'fixed', bottom: 30, right: 30 }}>
