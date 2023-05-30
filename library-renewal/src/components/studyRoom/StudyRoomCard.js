@@ -21,7 +21,7 @@ const RoomContainer = styled.div`
 `;
 
 const RoomNo = styled.div`
-  background-color: #848484;
+  background-color: #e1f6fc;
   height: 3rem;
   color: #ffffff;
 
@@ -46,7 +46,7 @@ const RoomContent = styled.div`
     }
 
     .room-noti {
-      background-color: #eeeeee;
+      background-color: #f5f7fa;
       width: 75%;
       padding: 10px 0 0 10px;
       margin-left: 10px;
@@ -116,6 +116,12 @@ const RoomContent = styled.div`
   }
 `;
 
+const RoomReserveContainer = styled.div`
+  span {
+    font-size: 12px;
+  }
+`;
+
 const StudyRoomCard = ({ roomList, currentLastUrl, todayDate }) => {
   let lastUrl = 'floor1';
 
@@ -161,31 +167,32 @@ const StudyRoomCard = ({ roomList, currentLastUrl, todayDate }) => {
             <span>- 토~일요일 (공휴일 포함) : 13:00 ~ 18:50</span>
           </div>
         </div>
-        <div className="room-reservation">
-          {roomList && (
-            <>
-              {roomList.useTimes.map((item) => (
-                <button className="time first">
-                  <span>13:00~14:00</span>
-                  <span>예약가능</span>
-                </button>
-              ))}
-            </>
-          )}
-
-          {/*{roomList && (
+        <RoomReserveContainer>
+          <div className="room-reservation">
+            {roomList && (
+              <>
+                {roomList.useTimes.map((item) => (
+                  <button className="time first">
+                    <span>{item.time}</span>
+                    <span>{item.roomReserve}</span>
+                  </button>
+                ))}
+              </>
+            )}
+            {/*{roomList && (
             <>
               {roomList.useTimes.map((item) => (
                 <ReserveTime key={item.id} item={item} />
               ))}
             </>
               )}*/}
-        </div>
-        <div className="reserve-box">
-          <div className="reserve-btn">
-            <button onClick={handleClickSubmit}>신청</button>
           </div>
-        </div>
+          <div className="reserve-box">
+            <div className="reserve-btn">
+              <button onClick={handleClickSubmit}>신청</button>
+            </div>
+          </div>
+        </RoomReserveContainer>
       </RoomContent>
     </RoomContainer>
   );
