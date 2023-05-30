@@ -13,7 +13,7 @@ const Container = styled.div`
 
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid #ffffff;
   }
 
   .col-title {
@@ -38,18 +38,18 @@ const MyLoanHistory = () => {
             </tr>
             <tr>
               <td className="col-title">1</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">2023-05-17</td>
-              <td className="col-title">2023-05-28</td>
+              <td className="col-title">(脈)신민사소송법:문제편</td>
+              <td className="col-title">이상신</td>
+              <td className="col-title">2023-05-03</td>
+              <td className="col-title">2023-05-23</td>
               <td className="col-title">정상반납</td>
             </tr>
             <tr>
               <td className="col-title">2</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">OOO</td>
-              <td className="col-title">2023-05-17</td>
-              <td className="col-title">2023-05-28</td>
+              <td className="col-title">교육학</td>
+              <td className="col-title">행정고시학원</td>
+              <td className="col-title">2023-05-03</td>
+              <td className="col-title">2023-05-26</td>
               <td className="col-title">연체반납</td>
             </tr>
           </tbody>

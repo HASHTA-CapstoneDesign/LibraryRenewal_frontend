@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getStudyRoomList } from '../../api/studyRoom/studyRoomLIst';
+import { getStudyRoomList } from '../../api/studyRoom/studyRoomList';
 import { useState, useEffect } from 'react';
+import {
+  STUDYROOM_FLOOR1_ENDPOINT,
+  studyRoomCreate,
+} from '../../api/studyRoom/studyRoomList';
+import ReserveTime from './ReserveTime';
 
 const RoomContainer = styled.div`
   background-color: #ffffff;
@@ -16,7 +21,7 @@ const RoomContainer = styled.div`
 `;
 
 const RoomNo = styled.div`
-  background-color: #848484;
+  background-color: #e1f6fc;
   height: 3rem;
   color: #ffffff;
 
@@ -41,7 +46,7 @@ const RoomContent = styled.div`
     }
 
     .room-noti {
-      background-color: #eeeeee;
+      background-color: #f5f7fa;
       width: 75%;
       padding: 10px 0 0 10px;
       margin-left: 10px;
@@ -111,8 +116,20 @@ const RoomContent = styled.div`
   }
 `;
 
-const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
-  const { data: roomList, isLoading } = useQuery(
+const RoomReserveContainer = styled.div`
+  span {
+    font-size: 12px;
+  }
+`;
+
+const StudyRoomCard = ({ roomList, currentLastUrl, todayDate }) => {
+  let lastUrl = 'floor1';
+
+  if (currentLastUrl !== undefined) {
+    lastUrl = currentLastUrl;
+  }
+
+  /*const { data: roomList, isLoading } = useQuery(
     ['studyRooms', currentLastUrl, todayDate],
     async () =>
       await getStudyRoomList({ floor: currentLastUrl, data: todayDate }),
@@ -124,12 +141,20 @@ const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
   if (isLoading) {
     <div>loading...</div>;
   }
-  console.log('roomList ', roomList);
+  console.log('roomList ', roomList); */
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleClickSubmit = () => {
+    console.log('신청');
+  };
 
   return (
-    <RoomContainer>
+    <RoomContainer onSubmit={handleSubmit}>
       <RoomNo>
-        <span>17212호실</span>
+        <span>{roomList.name}</span>
       </RoomNo>
       <RoomContent>
         <div className="room-info">
@@ -142,37 +167,32 @@ const StudyRoomCard = ({ currentLastUrl, todayDate }) => {
             <span>- 토~일요일 (공휴일 포함) : 13:00 ~ 18:50</span>
           </div>
         </div>
-        <div className="room-reservation">
-          <button className="time first">
-            <span>13:00~14:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time second">
-            <span>14:00~15:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time third">
-            <span>15:00~16:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time fourth">
-            <span>16:00~17:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time fifth">
-            <span>17:00~18:00</span>
-            <span>예약가능</span>
-          </button>
-          <button className="time sixth">
-            <span>18:00~19:00</span>
-            <span>예약가능</span>
-          </button>
-        </div>
-        <div className="reserve-box">
-          <div className="reserve-btn">
-            <button>신청</button>
+        <RoomReserveContainer>
+          <div className="room-reservation">
+            {roomList && (
+              <>
+                {roomList.useTimes.map((item) => (
+                  <button className="time first">
+                    <span>{item.time}</span>
+                    <span>{item.roomReserve}</span>
+                  </button>
+                ))}
+              </>
+            )}
+            {/*{roomList && (
+            <>
+              {roomList.useTimes.map((item) => (
+                <ReserveTime key={item.id} item={item} />
+              ))}
+            </>
+              )}*/}
           </div>
-        </div>
+          <div className="reserve-box">
+            <div className="reserve-btn">
+              <button onClick={handleClickSubmit}>신청</button>
+            </div>
+          </div>
+        </RoomReserveContainer>
       </RoomContent>
     </RoomContainer>
   );

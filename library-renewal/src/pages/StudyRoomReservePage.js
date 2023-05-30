@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { Link, useLocation, Routes, Route } from 'react-router-dom';
 import Container from '../components/Container';
 import StudyRoomReserve from '../components/studyRoom/StudyRoomReserve';
+import StudyRoomReserve2 from '../components/studyRoom/StudyRoomReserve2';
 import MyRoomReserveHistory from '../components/studyRoom/MyRoomReserveHistory';
+import { useState, useEffect } from 'react';
+import { convertDate } from '../utils/dateConvert';
 
 const ContainerBox = styled.div`
   background-color: #ffffff;
@@ -13,6 +16,7 @@ const ContainerBox = styled.div`
   //padding-top: 3rem;
   padding-bottom: 3rem;
   color: var(--main-font-color);
+  margin-bottom: 12rem;
 `;
 
 const TapContainer = styled.div`
@@ -62,6 +66,18 @@ const TabLink = styled(Link)`
 
 const StudyRoomReservePage = () => {
   const { pathname } = useLocation();
+
+  const [currentLastUrl, setCurrentLastUrl] = useState('floor1');
+
+  // const todayDate = convertDate(new Date());
+  const todayDate = '2023-05-28';
+
+  useEffect(() => {
+    const url = pathname;
+    const splitUrl = url.split('/');
+    const location = splitUrl[splitUrl.length - 1];
+    setCurrentLastUrl(location);
+  });
 
   return (
     <ContainerBox>
@@ -120,14 +136,54 @@ const StudyRoomReservePage = () => {
         </div>
       </TapContainer>
       <Routes>
-        <Route path="/" element={<StudyRoomReserve />}></Route>
+        <Route path="/" element={<StudyRoomReserve2 />}></Route>
         <Route path="list" element={<StudyRoomReserve />}></Route>
         <Route path="history" element={<MyRoomReserveHistory />}></Route>
-        <Route path="floor1" element={<StudyRoomReserve />}></Route>
-        <Route path="floor2" element={<StudyRoomReserve />}></Route>
-        <Route path="floor3" element={<StudyRoomReserve />}></Route>
-        <Route path="floor4" element={<StudyRoomReserve />}></Route>
-        <Route path="floor5" element={<StudyRoomReserve />}></Route>
+        <Route
+          path="floor1"
+          element={
+            <StudyRoomReserve
+              currentLastUrl={currentLastUrl}
+              todayDate={todayDate}
+            />
+          }
+        ></Route>
+        <Route
+          path="floor2"
+          element={
+            <StudyRoomReserve
+              currentLastUrl={currentLastUrl}
+              todayDate={todayDate}
+            />
+          }
+        ></Route>
+        <Route
+          path="floor3"
+          element={
+            <StudyRoomReserve
+              currentLastUrl={currentLastUrl}
+              todayDate={todayDate}
+            />
+          }
+        ></Route>
+        <Route
+          path="floor4"
+          element={
+            <StudyRoomReserve
+              currentLastUrl={currentLastUrl}
+              todayDate={todayDate}
+            />
+          }
+        ></Route>
+        <Route
+          path="floor5"
+          element={
+            <StudyRoomReserve
+              currentLastUrl={currentLastUrl}
+              todayDate={todayDate}
+            />
+          }
+        ></Route>
       </Routes>
     </ContainerBox>
   );
