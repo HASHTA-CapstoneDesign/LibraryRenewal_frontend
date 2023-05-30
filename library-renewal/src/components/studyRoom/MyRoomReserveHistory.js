@@ -18,7 +18,7 @@ const Container = styled.div`
     border-top: 1px solid #a2a6aa;
     border-bottom: 1px solid #a2a6aa;
     color: black;
-    padding: 0 10px;
+    padding: 0 14px;
   }
 
   .col-title {
@@ -96,7 +96,7 @@ const MyRoomReserveHistory = () => {
                       <input type="checkbox" id="room-checkbox" />
                     </td>
                     <td className="col-title place">
-                      {item.floor} / {item.roomName}
+                      2층 스터디룸 / {item.roomName}
                     </td>
                     <td className="col-title use-date">{item.creDate}</td>
                     <td className="col-title use-time">{item.useTimes[0]}</td>

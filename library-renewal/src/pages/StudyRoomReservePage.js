@@ -137,7 +137,7 @@ const StudyRoomReservePage = () => {
       </TapContainer>
       <Routes>
         <Route path="/" element={<StudyRoomReserve2 />}></Route>
-        <Route path="list" element={<StudyRoomReserve2 />}></Route>
+        <Route path="list" element={<StudyRoomReserve />}></Route>
         <Route path="history" element={<MyRoomReserveHistory />}></Route>
         <Route
           path="floor1"
