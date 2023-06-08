@@ -1,4 +1,4 @@
-﻿# LibraryRenewal_Backend
+﻿# LibraryRenewal_Frontend
 
 ## Deployment url
 > **프론트 서버** : [http://34.64.215.230:3000/](http://34.64.215.230:3000/)<br>
